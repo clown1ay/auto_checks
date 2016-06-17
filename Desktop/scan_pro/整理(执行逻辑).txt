@@ -1,0 +1,18 @@
+1.一个任务的产生首先是从 /task/new 取得 taskid ，
+2.然后在送到 /scan/<taskid>/strat ，然而POST所需的DATA 最后是JSON格式呈现，内容一般对sqlmap的参数名，下列例子假设对：http://example.com 进行一个POST注入，内容为  username=123&password=456 则送到 ：/scan/<taskid>/start/  它的内容如下：
+{
+	"url":"http://example.com",
+	"data":"username=123&password=456"
+}
+
+送出之后可从 /scan/<taskid>/log得到注入过程的记录，而/scan/<taskid>/status 能够取得注入是否完成，其status共有三种 not running /running /以及terminated
+若取得 terminated表示注入完成。
+
+而注入成功与否，则是 /scan/<taskid>/data 取得，若成功，则回传, josn data不为空，并含有注入点相关的资讯。
+
+以上资讯，既可将sqlmap做平行化扫描。
+
+
+
+
+--------------------------------------
