@@ -1,0 +1,2 @@
+1.启动sqlmapapi -s  服务端（确保系统有sqlmapapi服务）
+2.运行runScan.py 
